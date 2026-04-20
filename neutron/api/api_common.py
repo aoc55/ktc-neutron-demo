@@ -46,6 +46,7 @@ def ensure_if_match_supported():
 
 def check_request_for_revision_constraint(request):
     """Parses, verifies, and returns a constraint from a request."""
+    "TEST"
     revision_number = None
     for e in getattr(request.if_match, 'etags', []):
         if e.startswith('revision_number='):
