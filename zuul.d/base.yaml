@@ -4,10 +4,12 @@
     description: Run neutron functional tests
     timeout: 7800
     required-projects:
-      - opendev.org/openstack/devstack
+      - name: openstack/devstack
+        override-checkout: stable/2025.1
       # - openstack/neutron
       - aoc55/ktc-neutron-demo
-      - openstack/requirements
+      - name: openstack/requirements
+        override-checkout: stable/2025.1
     roles:
       - zuul: openstack/devstack
     pre-run: playbooks/configure_functional_job.yaml
