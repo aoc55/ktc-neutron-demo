@@ -10,11 +10,12 @@
 #      - release-notes-jobs-python3
 #      - neutron-experimental-jobs
 #      - neutron-periodic-jobs
-      - neutron-tox-override-jobs
+    # DEMO!!!
+#      - neutron-tox-override-jobs
 #      - neutron-skip-level-jobs
     check:
-      jobs: []
-#        - neutron-functional
+      jobs:
+        - neutron-functional
 #        - neutron-fullstack
 #        - neutron-ovs-grenade-multinode
 #        - neutron-ovn-grenade-multinode
