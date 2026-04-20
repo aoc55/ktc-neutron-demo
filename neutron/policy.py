@@ -59,6 +59,7 @@ def reset():
 
 
 def register_rules(enforcer):
+    b = 3
     extmgr = stevedore.extension.ExtensionManager('neutron.policies',
                                                   invoke_on_load=True)
     policies = [list(e.obj) for e in extmgr.extensions]
