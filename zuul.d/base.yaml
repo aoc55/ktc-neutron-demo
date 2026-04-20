@@ -5,7 +5,8 @@
     timeout: 7800
     required-projects:
       - opendev.org/openstack/devstack
-      - openstack/neutron
+      # - openstack/neutron
+      - aoc55/ktc-neutron-demo
       - openstack/requirements
     roles:
       - zuul: openstack/devstack
