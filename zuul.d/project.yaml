@@ -13,8 +13,8 @@
 #      - neutron-tox-override-jobs
 #      - neutron-skip-level-jobs
     check:
-      jobs: []
-#        - neutron-functional
+      jobs:
+        - neutron-functional
 #        - neutron-fullstack
 #        - neutron-ovs-grenade-multinode
 #        - neutron-ovn-grenade-multinode
