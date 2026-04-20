@@ -1,0 +1,9 @@
+# neutron-functional is defined in base.yaml (same repo) — override directly there, not here.
+
+- job:
+    name: neutron-tempest-plugin-ovn-2025-1
+    required-projects:
+      - name: aoc55/ktc-neutron-demo
+    vars:
+      devstack_plugins:
+        neutron: https://github.com/aoc55/ktc-neutron-demo.git
