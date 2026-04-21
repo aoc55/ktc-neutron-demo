@@ -34,6 +34,8 @@
       - name: openstack/requirements
         override-checkout: stable/2025.1
 
+
+# ---- devstack
 - job:
     name: ktc-neutron-tempest-plugin-ovn-2025-1
     parent: neutron-tempest-plugin-ovn-2025-1
@@ -48,6 +50,23 @@
       - name: openstack/requirements
         override-checkout: stable/2025.1
       - name: aoc55/ktc-neutron-demo
+    vars:
+      devstack_plugins:
+        neutron: https://github.com/aoc55/ktc-neutron-demo.git
+
+- job:
+    name: ktc-neutron-ovn-rally-task
+    parent: neutron-ovn-rally-task
+    # ----------------------------------------
+    roles:
+      - zuul: zd1/zd1-zuul-config
+    pre-run: playbooks/ktc-devstack-pre.yaml
+    # ----------------------------------------
+    required-projects:
+      - name: openstack/devstack
+        override-checkout: stable/2025.1
+      - name: openstack/rally
+      - name: openstack/rally-openstack
     vars:
       devstack_plugins:
         neutron: https://github.com/aoc55/ktc-neutron-demo.git
