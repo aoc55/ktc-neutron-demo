@@ -26,6 +26,9 @@
 - job:
     name: ktc-neutron-tempest-plugin-ovn-2025-1
     parent: neutron-tempest-plugin-ovn-2025-1
+    roles:
+      - zuul: zd1/zd1-zuul-config
+    pre-run: playbooks/ktc-pre.yaml
     required-projects:
       - name: openstack/devstack
         override-checkout: stable/2025.1

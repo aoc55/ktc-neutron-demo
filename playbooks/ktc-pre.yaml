@@ -1,0 +1,4 @@
+- hosts: all
+  become: yes
+  roles:
+    - ktc-replace-upstream-with-forks
