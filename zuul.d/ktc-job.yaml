@@ -1,10 +1,35 @@
-# neutron-functional is defined in base.yaml (same repo) — override directly there, not here.
+# All ktc- jobs inherit upstream jobs and substitute aoc55/ktc-neutron-demo
+# for openstack/neutron as the source under test.
+
+# ── Case A: base.yaml 내부 job wrapper ────────────────────────────────────
+# neutron-functional은 원복 후 openstack/neutron 기준.
+# dual-checkout(openstack/neutron + ktc-neutron-demo) 발생 → 실험 검증 대상.
 
 - job:
-    name: neutron-tempest-plugin-ovn-2025-1
-    parent: neutron-tempest-plugin-ovn  # 필수
+    name: ktc-neutron-functional
+    parent: neutron-functional
+    required-projects:
+      - aoc55/ktc-neutron-demo
+    vars:
+      base_dir: "{{ ansible_user_dir }}/src/github.com/aoc55"
+      gate_dest_dir: "{{ ansible_user_dir }}/src/github.com/aoc55"
+      devstack_dir: "{{ ansible_user_dir }}/src/opendev.org/openstack/devstack"
+      neutron_dir: "{{ ansible_user_dir }}/src/github.com/aoc55/ktc-neutron-demo"
+      project_name: "ktc-neutron-demo"
+      zuul_copy_output:
+        '/opt/stack/logs/dsvm-functional-logs.tar.gz': logs
+
+# ── Case B: 외부 project job wrapper ─────────────────────────────────────
+# neutron-tempest-plugin은 master 단일 브랜치 → ImpliedBranchMatcher 없음.
+# parent를 neutron-tempest-plugin-ovn-2025-1 (직접 부모)로 지정 가능.
+
+- job:
+    name: ktc-neutron-tempest-plugin-ovn-2025-1
+    parent: neutron-tempest-plugin-ovn-2025-1
     required-projects:
       - name: openstack/devstack
+        override-checkout: stable/2025.1
+      - name: openstack/requirements
         override-checkout: stable/2025.1
       - name: aoc55/ktc-neutron-demo
     vars:

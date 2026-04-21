@@ -15,8 +15,8 @@
 #      - neutron-skip-level-jobs
     check:
       jobs:
-        - neutron-tempest-plugin-ovn-2025-1
-#        - neutron-functional
+        - ktc-neutron-tempest-plugin-ovn-2025-1
+        - ktc-neutron-functional
 #        - neutron-fullstack
 #        - neutron-ovs-grenade-multinode
 #        - neutron-ovn-grenade-multinode

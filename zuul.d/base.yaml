@@ -6,8 +6,7 @@
     required-projects:
       - name: openstack/devstack
         override-checkout: stable/2025.1
-      # - openstack/neutron
-      - aoc55/ktc-neutron-demo  # KTC: replaced openstack/neutron with ktc fork
+      - openstack/neutron
       - name: openstack/requirements
         override-checkout: stable/2025.1
     roles:
@@ -63,12 +62,6 @@
       tox_environment:
         PYTHONPATH: /opt/stack/data/venv/lib/python3.12/site-packages
       tox_constraints_file: '{{ ansible_user_dir }}/src/opendev.org/openstack/requirements/upper-constraints.txt'
-      # KTC: override paths to use ktc-neutron-demo instead of openstack/neutron
-      base_dir: "{{ ansible_user_dir }}/src/github.com/aoc55"
-      gate_dest_dir: "{{ ansible_user_dir }}/src/github.com/aoc55"
-      devstack_dir: "{{ ansible_user_dir }}/src/opendev.org/openstack/devstack"
-      neutron_dir: "{{ ansible_user_dir }}/src/github.com/aoc55/ktc-neutron-demo"
-      project_name: "ktc-neutron-demo"
       zuul_copy_output:
         # We need to copy archive with logs to have it in job artifacts also,
         # /opt/stack/logs is default logs directory defined in neutron's

@@ -6,7 +6,14 @@
       "WebFetch(domain:review.opendev.org)",
       "WebFetch(domain:opendev.org)",
       "WebFetch(domain:log.zd1.aoc55.cloud)",
-      "Bash(kubectl exec *)"
+      "Bash(kubectl exec *)",
+      "Bash(curl -s \"http://10.233.58.59:9000/api/tenant/aoc55-tenant/job/neutron-tempest-plugin-ovn-2025-1\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s \"http://localhost:30081/api/tenant/aoc55-tenant/job/neutron-tempest-plugin-ovn-2025-1\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\('variant',i,'parent:',v.get\\('parent'\\), 'run:',v.get\\('run'\\)\\) for i,v in enumerate\\(d\\)]\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d, indent=2\\)\\)\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('총 variants:', len\\(d\\)\\); [print\\(f'\\\\n=== variant {i} ===\\\\nsource:', v.get\\('source_context'\\), '\\\\nbranches:', v.get\\('branches'\\), '\\\\nparent:', v.get\\('parent'\\), '\\\\nrun:', v.get\\('run'\\)\\) for i,v in enumerate\\(d\\)]\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('variants:', len\\(d\\)\\); [print\\(f'\\\\n[{i}] source:', v.get\\('source_context'\\), '\\\\n    parent:', v.get\\('parent'\\), '\\\\n    branches:', v.get\\('branches'\\)\\) for i,v in enumerate\\(d\\)]\")"
     ]
   }
 }
