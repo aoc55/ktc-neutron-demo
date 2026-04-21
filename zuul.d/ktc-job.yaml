@@ -2,6 +2,7 @@
 
 - job:
     name: neutron-tempest-plugin-ovn-2025-1
+    parent: neutron-tempest-plugin-ovn
     required-projects:
       - name: aoc55/ktc-neutron-demo
     vars:
