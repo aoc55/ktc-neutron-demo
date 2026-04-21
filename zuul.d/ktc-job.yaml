@@ -2,8 +2,10 @@
 
 - job:
     name: neutron-tempest-plugin-ovn-2025-1
-    parent: neutron-tempest-plugin-ovn
+    parent: neutron-tempest-plugin-ovn  # 필수
     required-projects:
+      - name: openstack/devstack
+        override-checkout: stable/2025.1
       - name: aoc55/ktc-neutron-demo
     vars:
       devstack_plugins:
