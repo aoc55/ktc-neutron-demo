@@ -1,0 +1,56 @@
+- project-template:
+    name: ktc-neutron-tox-override-jobs
+    check:
+      jobs:
+        - ktc-openstack-tox-py39:
+            timeout: 3600
+            irrelevant-files: &ktc-irrelevant-files
+              - ^\.pre-commit-config\.yaml$
+              - ^\.pylintrc$
+              - ^.*\.conf\.sample$
+              - ^.*\.rst$
+              - ^doc/.*$
+              - ^neutron/locale/.*$
+              - ^neutron/tests/fullstack/.*$
+              - ^neutron/tests/functional/.*$
+              - ^releasenotes/.*$
+              - ^setup.cfg$
+              - ^plugin.spec$
+              - ^tools/ovn_migration/.*$
+              - ^tools/.*$
+              - ^vagrant/.*$
+              - ^devstack/.*$
+              - ^playbooks/.*$
+              - ^roles/.*$
+              - ^rally-jobs/.*$
+              - ^zuul.d/base.yaml
+              - ^zuul.d/grenade.yaml
+              - ^zuul.d/project.yaml
+              - ^zuul.d/rally.yaml
+              - ^zuul.d/tempest-multinode.yaml
+              - ^zuul.d/tempest-singlenode.yaml
+        - ktc-openstack-tox-py312:
+            timeout: 3600
+            irrelevant-files: *ktc-irrelevant-files
+        - ktc-openstack-tox-cover:
+            timeout: 4800
+            pre-run: playbooks/configure_swap.yaml
+            vars:
+              configure_swap_size: 4096
+            irrelevant-files: *ktc-irrelevant-files
+    gate:
+      jobs:
+        - ktc-openstack-tox-py39:
+            timeout: 3600
+            irrelevant-files: *ktc-irrelevant-files
+        - ktc-openstack-tox-py312:
+            timeout: 3600
+            irrelevant-files: *ktc-irrelevant-files
+    periodic:
+      jobs:
+        - ktc-openstack-tox-py39:
+            timeout: 3600
+            irrelevant-files: *ktc-irrelevant-files
+        - ktc-openstack-tox-py312:
+            timeout: 3600
+            irrelevant-files: *ktc-irrelevant-files
