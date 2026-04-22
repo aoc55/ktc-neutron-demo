@@ -1474,8 +1474,9 @@ class Ml2Plugin(db_base_plugin_v2.NeutronDbPluginV2,
     @db_api.retry_if_session_inactive()
     def create_subnet(self, context, subnet):
 
+        # 원복
         # DEMO 을 위한 의도적 실패
-        raise exc.BadRequest(resource='subnet',msg='KTC-DEMO: intentional CI verification failure')
+        # raise exc.BadRequest(resource='subnet',msg='KTC-DEMO: intentional CI verification failure')
 
         self._before_create_subnet(context, subnet)
         result, mech_context = self._create_subnet_db(context, subnet)
