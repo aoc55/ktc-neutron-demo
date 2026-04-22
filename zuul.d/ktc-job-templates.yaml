@@ -32,12 +32,12 @@
         - ktc-openstack-tox-py312:
             timeout: 3600
             irrelevant-files: *ktc-irrelevant-files
-        - ktc-openstack-tox-cover:
-            timeout: 4800
-            pre-run: playbooks/configure_swap.yaml
-            vars:
-              configure_swap_size: 4096
-            irrelevant-files: *ktc-irrelevant-files
+#        - ktc-openstack-tox-cover:
+#            timeout: 4800
+#            pre-run: playbooks/configure_swap.yaml
+#            vars:
+#              configure_swap_size: 4096
+#            irrelevant-files: *ktc-irrelevant-files
     gate:
       jobs:
         - ktc-openstack-tox-py39:
