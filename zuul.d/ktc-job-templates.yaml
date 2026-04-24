@@ -61,7 +61,6 @@
 # ================================================
 - project-template:
     name: ktc-neutron-tempest-plugin-jobs-2025-1
-    parent: neutron-tempest-plugin-jobs-2025-1
     check:
       jobs:
         - ktc-neutron-tempest-plugin-openvswitch-2025-1
