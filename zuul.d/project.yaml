@@ -18,7 +18,7 @@
 #      - neutron-tox-override-jobs
 #      - neutron-skip-level-jobs
     check:
-      jobs:
+      jobs: []
 #        - ktc-neutron-tempest-plugin-ovn-2025-1
 #        - ktc-neutron-functional
 #        - ktc-neutron-ovn-rally-task
