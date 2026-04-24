@@ -41,7 +41,6 @@
 # ================================================
 - job:
     name: ktc-neutron-tempest-plugin-openvswitch-2025-1
-    parent: neutron-tempest-plugin-openvswitch-2025-1
     # ----------------------------------------
     roles:
       - zuul: zd1/zd1-zuul-config
