@@ -35,7 +35,46 @@
         override-checkout: stable/2025.1
 
 
-# ---- devstack
+
+# ================================================
+# - Parent Project: openstack/neutron-tempest-plugin
+# ================================================
+- job:
+    name: ktc-neutron-tempest-plugin-openvswitch-2025-1
+    parent: neutron-tempest-plugin-openvswitch-2025-1
+    # ----------------------------------------
+    roles:
+      - zuul: zd1/zd1-zuul-config
+    pre-run: playbooks/ktc-devstack-pre.yaml
+    # ----------------------------------------
+    required-projects:
+      - name: openstack/devstack
+        override-checkout: stable/2025.1
+      - name: openstack/requirements
+        override-checkout: stable/2025.1
+      - name: aoc55/ktc-neutron-demo
+    vars:
+      devstack_plugins:
+        neutron: https://github.com/aoc55/ktc-neutron-demo.git
+
+- job:
+    name: ktc-neutron-tempest-plugin-openvswitch-iptables_hybrid-2025-1
+    parent: neutron-tempest-plugin-openvswitch-iptables_hybrid-2025-1
+    # ----------------------------------------
+    roles:
+      - zuul: zd1/zd1-zuul-config
+    pre-run: playbooks/ktc-devstack-pre.yaml
+    # ----------------------------------------
+    required-projects:
+      - name: openstack/devstack
+        override-checkout: stable/2025.1
+      - name: openstack/requirements
+        override-checkout: stable/2025.1
+      - name: aoc55/ktc-neutron-demo
+    vars:
+      devstack_plugins:
+        neutron: https://github.com/aoc55/ktc-neutron-demo.git
+
 - job:
     name: ktc-neutron-tempest-plugin-ovn-2025-1
     parent: neutron-tempest-plugin-ovn-2025-1
@@ -53,6 +92,66 @@
     vars:
       devstack_plugins:
         neutron: https://github.com/aoc55/ktc-neutron-demo.git
+
+- job:
+    name: ktc-neutron-tempest-plugin-designate-scenario-2025-1
+    parent: neutron-tempest-plugin-designate-scenario-2025-1
+    # ----------------------------------------
+    roles:
+      - zuul: zd1/zd1-zuul-config
+    pre-run: playbooks/ktc-devstack-pre.yaml
+    # ----------------------------------------
+    required-projects:
+      - name: openstack/devstack
+        override-checkout: stable/2025.1
+      - name: openstack/requirements
+        override-checkout: stable/2025.1
+      - name: aoc55/ktc-neutron-demo
+    vars:
+      devstack_plugins:
+        neutron: https://github.com/aoc55/ktc-neutron-demo.git
+
+- job:
+    name: ktc-neutron-tempest-plugin-openvswitch-ubuntu-jammy-2025-1
+    parent: neutron-tempest-plugin-openvswitch-ubuntu-jammy-2025-1
+    # ----------------------------------------
+    roles:
+      - zuul: zd1/zd1-zuul-config
+    pre-run: playbooks/ktc-devstack-pre.yaml
+    # ----------------------------------------
+    required-projects:
+      - name: openstack/devstack
+        override-checkout: stable/2025.1
+      - name: openstack/requirements
+        override-checkout: stable/2025.1
+      - name: aoc55/ktc-neutron-demo
+    vars:
+      devstack_plugins:
+        neutron: https://github.com/aoc55/ktc-neutron-demo.git
+
+
+- job:
+    name: ktc-neutron-tempest-plugin-ovn-ubuntu-jammy-2025-1
+    parent: neutron-tempest-plugin-ovn-ubuntu-jammy-2025-1
+    # ----------------------------------------
+    roles:
+      - zuul: zd1/zd1-zuul-config
+    pre-run: playbooks/ktc-devstack-pre.yaml
+    # ----------------------------------------
+    required-projects:
+      - name: openstack/devstack
+        override-checkout: stable/2025.1
+      - name: openstack/requirements
+        override-checkout: stable/2025.1
+      - name: aoc55/ktc-neutron-demo
+    vars:
+      devstack_plugins:
+        neutron: https://github.com/aoc55/ktc-neutron-demo.git
+
+
+
+
+
 
 - job:
     name: ktc-neutron-ovn-rally-task

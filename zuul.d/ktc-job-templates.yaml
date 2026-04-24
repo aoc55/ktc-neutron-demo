@@ -54,3 +54,27 @@
         - ktc-openstack-tox-py312:
             timeout: 3600
             irrelevant-files: *ktc-irrelevant-files
+
+
+# ================================================
+# - Parent Project: openstack/neutron-tempest-plugin
+# ================================================
+- project-template:
+    name: ktc-neutron-tempest-plugin-jobs-2025-1
+    parent: neutron-tempest-plugin-jobs-2025-1
+    check:
+      jobs:
+        - ktc-neutron-tempest-plugin-openvswitch-2025-1
+        - ktc-neutron-tempest-plugin-openvswitch-iptables_hybrid-2025-1
+        - ktc-neutron-tempest-plugin-ovn-2025-1
+#        - ktc-neutron-tempest-plugin-designate-scenario-2025-1
+#        - ktc-neutron-tempest-plugin-openvswitch-ubuntu-jammy-2025-1
+#        - ktc-neutron-tempest-plugin-ovn-ubuntu-jammy-2025-1
+    gate:
+      jobs:
+        - neutron-tempest-plugin-ovn-2025-1
+    #TODO(slaweq): Move neutron-tempest-plugin-dvr-multinode-scenario out of
+    #              the experimental queue when it will be more stable
+    experimental:
+      jobs:
+        - neutron-tempest-plugin-dvr-multinode-scenario-2025-1
