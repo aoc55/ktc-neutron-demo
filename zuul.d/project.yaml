@@ -22,22 +22,26 @@
 #      - neutron-tox-override-jobs
 #      - neutron-skip-level-jobs
     check:
-      jobs: []
-#        - ktc-neutron-tempest-plugin-ovn-2025-1
-
-#        - ktc-neutron-ovn-rally-task
+      jobs:
 
 #        - neutron-functional
-#        - ktc-neutron-functional
 #        - neutron-fullstack
-#        - ktc-neutron-fullstack
-
+        - ktc-neutron-functional
+        - ktc-neutron-fullstack
 
 #        - neutron-ovs-grenade-multinode
 #        - neutron-ovn-grenade-multinode
+        - ktc-neutron-ovs-grenade-multinode
+        - ktc-neutron-ovn-grenade-multinode
+
 #        - neutron-ovs-tempest-multinode-full
-#        - neutron-ovs-tempest-dvr-ha-multinode-fullㄹ
+#        - neutron-ovs-tempest-dvr-ha-multinode-full
 #        - neutron-ovn-tempest-ipv6-only-ovs-release
+        - ktc-neutron-ovs-tempest-multinode-full
+        - ktc-neutron-ovs-tempest-dvr-ha-multinode-full
+        - ktc-neutron-ovn-tempest-ipv6-only-ovs-release
+
+
 #        - neutron-ovs-rally-task
 #        - neutron-ovn-rally-task
 #        - tempest-integrated-networking:
