@@ -1,6 +1,6 @@
 - project:
     templates:
-      - ktc-neutron-tox-override-jobs
+#      - ktc-neutron-tox-override-jobs
 
 #      - neutron-tempest-plugin-jobs-2025-1
 #      - openstack-cover-jobs
