@@ -222,11 +222,30 @@
     #   - name: aoc55/ktc-neutron-demo
 
 
+# ================================================
+# [ rally ]
+# - Project: ktc-neutron/zuul.d/tempest-multinode.yaml
+# - Project: ktc-neutron/zuul.d/tempest-singlenode.yaml
+# ================================================
+# 테스트 필요
+- job:
+    name: ktc-neutron-ovs-rally-task
+    parent: neutron-ovs-rally-task
+    # ----------------------------------------
+    roles:
+      - zuul: zd1/zd1-zuul-config
+    pre-run: playbooks/ktc-devstack-pre.yaml
+    # ----------------------------------------
+    required-projects:
+      - name: openstack/devstack
+        override-checkout: stable/2025.1
+      - name: openstack/rally
+      - name: openstack/rally-openstack
+    vars:
+      devstack_plugins:
+        neutron: https://github.com/aoc55/ktc-neutron-demo.git
 
-
- # ----- 정리대상
-
-
+# 테스트 필요
 - job:
     name: ktc-neutron-ovn-rally-task
     parent: neutron-ovn-rally-task
@@ -243,6 +262,10 @@
     vars:
       devstack_plugins:
         neutron: https://github.com/aoc55/ktc-neutron-demo.git
+
+
+
+
 
 
 

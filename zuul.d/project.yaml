@@ -25,10 +25,10 @@
       jobs:
 
 #        - neutron-functional
-#        - neutron-fullstack
         - ktc-neutron-functional
-        - ktc-neutron-fullstack
 
+        - ktc-neutron-fullstack
+          
 #        - neutron-ovs-grenade-multinode
 #        - neutron-ovn-grenade-multinode
         - ktc-neutron-ovs-grenade-multinode
@@ -41,9 +41,12 @@
         - ktc-neutron-ovs-tempest-dvr-ha-multinode-full
         - ktc-neutron-ovn-tempest-ipv6-only-ovs-release
 
-
 #        - neutron-ovs-rally-task
 #        - neutron-ovn-rally-task
+        - ktc-neutron-ovs-rally-task
+        - ktc-neutron-ovn-rally-task
+
+
 #        - tempest-integrated-networking:
 #            irrelevant-files: &ovn-irrelevant-files
 #              - ^\.pre-commit-config\.yaml$
