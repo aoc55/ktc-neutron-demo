@@ -1,6 +1,40 @@
+# ================================================
+# - Parent Project: openstack/openstack-zuul-jobs
+# - 추후 ktc-openstack-tox* 는 상위 Project 에 올리기
+# ================================================
+- job:
+    name: ktc-openstack-tox-pep8
+    parent: openstack-tox-pep8
+    required-projects:
+      - name: openstack/requirements
+        override-checkout: stable/2025.1
+- job:
+    name: ktc-openstack-tox-py39
+    parent: openstack-tox-py39
+    required-projects:
+      - name: openstack/requirements
+        override-checkout: stable/2025.1
+- job:
+    name: ktc-openstack-tox-py312
+    parent: openstack-tox-py312
+    required-projects:
+      - name: openstack/requirements
+        override-checkout: stable/2025.1
+- job:
+    name: ktc-openstack-tox-cover
+    parent: openstack-tox-cover
+    required-projects:
+      - name: openstack/requirements
+        override-checkout: stable/2025.1
+
+
+# ================================================
+# - Project: ktc-neutron
+# ================================================
 - job:
     name: ktc-neutron-functional
     parent: neutron-functional
+    timeout: 9000     # KTC 임시 상향
     required-projects:
       - aoc55/ktc-neutron-demo
     vars:
@@ -12,29 +46,20 @@
       zuul_copy_output:
         '/opt/stack/logs/dsvm-functional-logs.tar.gz': logs
 
-# 추후 ktc-openstack-tox* 는 상위 Project 에 올리기
 - job:
-    name: ktc-openstack-tox-py39
-    parent: openstack-tox-py39
+    name: ktc-neutron-fullstack
+    parent: neutron-functional
+    timeout: 120000     # KTC 임시 상향
     required-projects:
-      - name: openstack/requirements
-        override-checkout: stable/2025.1
-
-- job:
-    name: ktc-openstack-tox-py312
-    parent: openstack-tox-py312
-    required-projects:
-      - name: openstack/requirements
-        override-checkout: stable/2025.1
-
-- job:
-    name: ktc-openstack-tox-cover
-    parent: openstack-tox-cover
-    required-projects:
-      - name: openstack/requirements
-        override-checkout: stable/2025.1
-
-
+      - aoc55/ktc-neutron-demo
+    vars:
+      base_dir: "{{ ansible_user_dir }}/src/github.com/aoc55"
+      gate_dest_dir: "{{ ansible_user_dir }}/src/github.com/aoc55"
+      devstack_dir: "{{ ansible_user_dir }}/src/opendev.org/openstack/devstack"
+      neutron_dir: "{{ ansible_user_dir }}/src/github.com/aoc55/ktc-neutron-demo"
+      project_name: "ktc-neutron-demo"
+      zuul_copy_output:
+        '/opt/stack/logs/dsvm-functional-logs.tar.gz': logs
 
 # ================================================
 # - Parent Project: openstack/neutron-tempest-plugin
@@ -149,8 +174,7 @@
         neutron: https://github.com/aoc55/ktc-neutron-demo.git
 
 
-
-
+ # ----- 정리대상
 
 
 - job:
@@ -169,3 +193,7 @@
     vars:
       devstack_plugins:
         neutron: https://github.com/aoc55/ktc-neutron-demo.git
+
+
+
+

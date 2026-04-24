@@ -1,3 +1,40 @@
+# ================================================
+# - Parent Project: openstack/openstack-zuul-jobs
+# - 추후 ktc-openstack-tox* 는 상위 Project 에 올리기
+# ================================================
+- project-template:
+    name: ktc-openstack-python3-jobs
+    description: |
+      Runs unit tests for an OpenStack Python project under the CPython
+      version 3 releases designated for testing the latest release.
+    check:
+      jobs:
+        - ktc-openstack-tox-pep8
+        - ktc-openstack-tox-py39:
+            branches:
+              - ktc-stable/2025.1
+        - ktc-openstack-tox-py312:
+            branches:
+              - ktc-stable/2025.2
+    gate:
+      jobs:
+        - ktc-openstack-tox-pep8
+        - ktc-openstack-tox-py39:
+            branches:
+              - ktc-stable/2025.1
+        - ktc-openstack-tox-py312:
+            branches:
+              - ktc-stable/2025.1
+    periodic:
+      jobs: []
+    post:
+      jobs: []
+
+
+
+# ================================================
+# - Project: ktc-neutron
+# ================================================
 - project-template:
     name: ktc-neutron-tox-override-jobs
     check:
@@ -32,12 +69,12 @@
         - ktc-openstack-tox-py312:
             timeout: 3600
             irrelevant-files: *ktc-irrelevant-files
-#        - ktc-openstack-tox-cover:
-#            timeout: 4800
-#            pre-run: playbooks/configure_swap.yaml
-#            vars:
-#              configure_swap_size: 4096
-#            irrelevant-files: *ktc-irrelevant-files
+        - ktc-openstack-tox-cover:
+            timeout: 4800
+            pre-run: playbooks/configure_swap.yaml
+            vars:
+              configure_swap_size: 4096
+            irrelevant-files: *ktc-irrelevant-files
     gate:
       jobs:
         - ktc-openstack-tox-py39:
