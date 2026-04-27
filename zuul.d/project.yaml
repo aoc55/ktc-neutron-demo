@@ -47,7 +47,7 @@
 #        - neutron-ovs-rally-task
 #        - neutron-ovn-rally-task
         # [ KTC ]
-#        - ktc-neutron-ovs-rally-task
+        - ktc-neutron-ovs-rally-task
         - ktc-neutron-ovn-rally-task
 
 
