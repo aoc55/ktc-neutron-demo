@@ -45,7 +45,6 @@
       project_name: "ktc-neutron-demo"
       zuul_copy_output:
         '/opt/stack/logs/dsvm-functional-logs.tar.gz': logs
-    irrelevant-files: [] # [KGH TEST]
 
 - job:
     name: ktc-neutron-fullstack
@@ -250,6 +249,7 @@
       grenade_from_branch: stable/2024.2
       ktc_openstack_code_replace_target_dirs:
         - /opt/stack/new
+    irrelevant-files: [] # [KGH TEST]
 
 # ================================================
 # [ ktc-neutron-ovn-grenade-multinode ] === grenade 검증용 ===
@@ -282,6 +282,7 @@
       grenade_from_branch: stable/2024.2
       ktc_openstack_code_replace_target_dirs:
         - /opt/stack/new
+    irrelevant-files: [] # [KGH TEST]
 
 
 # ================================================
