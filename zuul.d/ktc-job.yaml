@@ -346,6 +346,7 @@
     vars:
       devstack_plugins:
         neutron: https://github.com/aoc55/ktc-neutron-demo.git
+    irrelevant-files: [] # for test Only
 
 # 테스트 필요
 - job:
@@ -364,7 +365,7 @@
     vars:
       devstack_plugins:
         neutron: https://github.com/aoc55/ktc-neutron-demo.git
-
+    irrelevant-files: [] # for test Only
 
 
 
