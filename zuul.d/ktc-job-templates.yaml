@@ -15,7 +15,7 @@
               - ktc-stable/2025.1
         - ktc-openstack-tox-py312:
             branches:
-              - ktc-stable/2025.2
+              - ktc-stable/2025.1
     gate:
       jobs:
         - ktc-openstack-tox-pep8
