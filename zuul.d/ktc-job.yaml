@@ -49,7 +49,7 @@
 
 - job:
     name: ktc-neutron-fullstack
-    parent: neutron-functional
+    parent: neutron-fullstack
     timeout: 120000     # KTC 임시 상향
     required-projects:
       - aoc55/ktc-neutron-demo
