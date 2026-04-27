@@ -1,7 +1,7 @@
 - project:
-    templates:
+    templates: []
       # - openstack-python3-jobs
-       - ktc-openstack-python3-jobs
+#       - ktc-openstack-python3-jobs
 
       # - neutron-tox-override-jobs
 #      - ktc-neutron-tox-override-jobs
@@ -22,13 +22,13 @@
 #      - neutron-tox-override-jobs
 #      - neutron-skip-level-jobs
     check:
-      jobs: []
+      jobs:
 
 #        - neutron-functional
 #        - neutron-fullstack
           # [ KTC ]
-#        - ktc-neutron-functional
-#        - ktc-neutron-fullstack
+        - ktc-neutron-functional
+        - ktc-neutron-fullstack
           
 #        - neutron-ovs-grenade-multinode
 #        - neutron-ovn-grenade-multinode
