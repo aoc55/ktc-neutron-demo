@@ -326,10 +326,8 @@
 
 # ================================================
 # [ rally ]
-# - Project: ktc-neutron/zuul.d/tempest-multinode.yaml
-# - Project: ktc-neutron/zuul.d/tempest-singlenode.yaml
+# - Project: ktc-neutron/zuul.d/rally.yaml
 # ================================================
-# 테스트 필요
 - job:
     name: ktc-neutron-ovs-rally-task
     parent: neutron-ovs-rally-task
@@ -346,9 +344,7 @@
     vars:
       devstack_plugins:
         neutron: https://github.com/aoc55/ktc-neutron-demo.git
-    irrelevant-files: [] # for test Only
 
-# 테스트 필요
 - job:
     name: ktc-neutron-ovn-rally-task
     parent: neutron-ovn-rally-task
@@ -365,11 +361,6 @@
     vars:
       devstack_plugins:
         neutron: https://github.com/aoc55/ktc-neutron-demo.git
-    irrelevant-files: [] # for test Only
-
-
-
-
 
 
 
