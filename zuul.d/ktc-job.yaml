@@ -175,23 +175,89 @@
 
 
 # ================================================
-# [ grenade ]
+# [ grenade ] === 검증용 ===
 # - Project: ktc-neutron/zuul.d/grenade.yml
+# ------------------------------------------------
+# [ 시나리오 ]
+# - OLD side : openstack/neutron       @ stable/2024.2 (upstream 그대로 유지)
+# - NEW side : aoc55/ktc-neutron-demo  @ ktc-stable/2025.1 (ktc fork)
+# - 즉, "upstream 2024.2 환경을 띄운 뒤 ktc fork (2025.1) 로 in-place 업그레이드"
+#   가 정상 동작하는지를 grenade 로 검증한다.
+#
+# [ 동작 흐름 (pre-run accumulate 순서) ]
+#   1) grenade-base pre-run (playbooks/pre.yaml)
+#      - configure-grenade-branches → grenade_from_branch=stable/2024.2 적용
+#      - setup-devstack-source-dirs (old) : rsync + git checkout stable/2024.2
+#      - setup-devstack-source-dirs (new) : rsync (zuul prepared ref 유지)
+#   2) grenade-multinode pre-run (playbooks/multinode-pre.yaml)
+#      - 멀티노드 브릿지 / 셋업
+#   3) (OVN 만) neutron-ovn-grenade-multinode pre-run (playbooks/multinode-setup.yaml)
+#   4) 본 ktc job 의 pre-run (playbooks/ktc-devstack-pre.yaml)
+#      - ktc_openstack_code_replace_target_dirs=[/opt/stack/new] 로 NEW side 만 fork 치환
+#        결과: /opt/stack/new/neutron → /opt/stack/new/ktc-neutron-demo (symlink)
+#   5) run: grenade.yaml
+#      - OLD 환경 stack.sh → grenade.sh 업그레이드 → tempest 검증
 # ================================================
-# 테스트 필요
+
+# ================================================
+# [ ktc-neutron-ovs-grenade-multinode ] === grenade 검증용 ===
+# ================================================
 - job:
     name: ktc-neutron-ovs-grenade-multinode
     parent: neutron-ovs-grenade-multinode
+    # ----------------------------------------
+    # [ ktc role 및 NEW side fork 치환 pre-run ]
+    # - zd1-zuul-config 의 ktc-openstack-code-replace role 사용
+    # - 부모 grenade pre-run 들이 /opt/stack/{old,new} 를 채운 뒤 마지막에 실행됨
     # ----------------------------------------
     roles:
       - zuul: zd1/zd1-zuul-config
     pre-run: playbooks/ktc-devstack-pre.yaml
     # ----------------------------------------
+    # [ required-projects ]
+    # - openstack/grenade  : grenade 자체. 브랜치리스 (master) 사용
+    # - openstack/devstack : NEW side 가 zuul-prepared ref 를 그대로 쓰므로
+    #                       stable/2025.1 명시 필요
+    # - openstack/neutron  : OLD side 의 upstream neutron 소스. stable/2024.2
+    #                       명시로 zuul 이 해당 ref 를 fetch 하도록 강제
+    #                       (NEW side 는 어차피 ktc fork 로 symlink 치환되므로
+    #                        branch 가 무엇이든 무관)
+    # - openstack/requirements : NEW side constraints 용 stable/2025.1 명시
+    # - aoc55/ktc-neutron-demo : NEW side 의 ktc fork
+    #                           (zuul change ref = ktc-stable/2025.1)
+    # ----------------------------------------
     required-projects:
-      - openstack/grenade  # 브랜치 확인 필요
+      - name: openstack/grenade
+      - name: openstack/devstack
+        override-checkout: stable/2025.1
+      - name: openstack/neutron
+        override-checkout: stable/2024.2
+      - name: openstack/requirements
+        override-checkout: stable/2025.1
       - name: aoc55/ktc-neutron-demo
+    # ----------------------------------------
+    # [ vars ]
+    # - grenade_from_branch     : OLD side 강제 지정. 부모 job 의 default 가
+    #                             zuul tenant 의 어떤 branch 를 로드하는지에
+    #                             의존하지 않도록 명시.
+    # - ktc_openstack_code_replace_target_dirs : ktc-openstack-code-replace role
+    #                             의 동작 대상을 NEW side 로 한정. OLD side 는
+    #                             upstream stable/2024.2 그대로 유지되어야 함.
+    # ----------------------------------------
+    vars:
+      grenade_from_branch: stable/2024.2
+      ktc_openstack_code_replace_target_dirs:
+        - /opt/stack/new
 
-# 테스트 필요
+# ================================================
+# [ ktc-neutron-ovn-grenade-multinode ] === grenade 검증용 ===
+# ------------------------------------------------
+# 위 OVS grenade 와 동일 구조.
+# 단, 부모 neutron-ovn-grenade-multinode 가 OLD side 에서 OVN/OVS 를 git build
+# 하도록 설정되어 있음 (OVN_BRANCH=branch-24.03, OVS_BRANCH=branch-3.3).
+# 해당 OVN/OVS 구버전과 ktc-stable/2025.1 NEW side 와의 호환성은
+# 첫 실행 후 logs 검증 필요 (호환 이슈 시 OVS grenade 만 우선 활성화 권장).
+# ================================================
 - job:
     name: ktc-neutron-ovn-grenade-multinode
     parent: neutron-ovn-grenade-multinode
@@ -201,8 +267,19 @@
     pre-run: playbooks/ktc-devstack-pre.yaml
     # ----------------------------------------
     required-projects:
-      - openstack/grenade  # 브랜치 확인 필요
+      - name: openstack/grenade
+      - name: openstack/devstack
+        override-checkout: stable/2025.1
+      - name: openstack/neutron
+        override-checkout: stable/2024.2
+      - name: openstack/requirements
+        override-checkout: stable/2025.1
       - name: aoc55/ktc-neutron-demo
+    # ----------------------------------------
+    vars:
+      grenade_from_branch: stable/2024.2
+      ktc_openstack_code_replace_target_dirs:
+        - /opt/stack/new
 
 
 # ================================================
