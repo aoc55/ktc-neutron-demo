@@ -45,6 +45,7 @@
       project_name: "ktc-neutron-demo"
       zuul_copy_output:
         '/opt/stack/logs/dsvm-functional-logs.tar.gz': logs
+    irrelevant-files: [] # [KGH TEST]
 
 - job:
     name: ktc-neutron-fullstack
@@ -60,6 +61,7 @@
       project_name: "ktc-neutron-demo"
       zuul_copy_output:
         '/opt/stack/logs/dsvm-functional-logs.tar.gz': logs
+    irrelevant-files: [] # [KGH TEST]
 
 # ================================================
 # - Parent Project: openstack/neutron-tempest-plugin
