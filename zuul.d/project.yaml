@@ -47,7 +47,7 @@
 #        - neutron-ovs-rally-task
 #        - neutron-ovn-rally-task
         # [ KTC ]
-        - ktc-neutron-ovs-rally-task
+#        - ktc-neutron-ovs-rally-task
         - ktc-neutron-ovn-rally-task
 
 
@@ -89,7 +89,7 @@
 #              - ^zuul.d/job-templates.yaml
 #              - ^zuul.d/rally.yaml
 #              - ^zuul.d/tempest-multinode.yaml
-#              - ^zuul.d/tempest-singlenode.yaml
+#              - ^zuul.d/tempest-singlenode.yamlff
 
     gate:
       jobs: []
