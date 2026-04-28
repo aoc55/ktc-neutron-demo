@@ -292,6 +292,7 @@
 # - Project: ktc-neutron/zuul.d/tempest-multinode.yaml
 # - Project: ktc-neutron/zuul.d/tempest-singlenode.yaml
 # ================================================
+w
 # 테스트 필요
 - job:
     name: ktc-neutron-ovs-tempest-multinode-full
@@ -301,8 +302,11 @@
       - zuul: zd1/zd1-zuul-config
     pre-run: playbooks/ktc-devstack-pre.yaml
     # ----------------------------------------
-    # required-projects:
-    #   - name: aoc55/ktc-neutron-demo
+    required-projects:
+     - name: openstack/devstack
+       override-checkout: stable/2025.1
+     - name: aoc55/ktc-neutron-demo
+    irrelevant-files: [] # [KGH TEST]
 
 # 테스트 필요
 - job:
@@ -313,8 +317,11 @@
       - zuul: zd1/zd1-zuul-config
     pre-run: playbooks/ktc-devstack-pre.yaml
     # ----------------------------------------
-    # required-projects:
-    #   - name: aoc55/ktc-neutron-demo
+    required-projects:
+     - name: openstack/devstack
+       override-checkout: stable/2025.1
+     - name: aoc55/ktc-neutron-demo
+    irrelevant-files: [] # [KGH TEST]
 
 # 테스트 필요
 - job:
@@ -325,8 +332,11 @@
       - zuul: zd1/zd1-zuul-config
     pre-run: playbooks/ktc-devstack-pre.yaml
     # ----------------------------------------
-    # required-projects:
-    #   - name: aoc55/ktc-neutron-demo
+    required-projects:
+     - name: openstack/devstack
+       override-checkout: stable/2025.1
+     - name: aoc55/ktc-neutron-demo
+    irrelevant-files: [] # [KGH TEST]
 
 
 # ================================================
