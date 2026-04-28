@@ -292,7 +292,6 @@
 # - Project: ktc-neutron/zuul.d/tempest-multinode.yaml
 # - Project: ktc-neutron/zuul.d/tempest-singlenode.yaml
 # ================================================
-w
 # 테스트 필요
 - job:
     name: ktc-neutron-ovs-tempest-multinode-full
