@@ -229,6 +229,7 @@
     # ----------------------------------------
     required-projects:
       - name: openstack/grenade
+        override-checkout: stable/2025.1
       - name: openstack/devstack
         override-checkout: stable/2025.1
       - name: openstack/neutron
@@ -270,6 +271,7 @@
     # ----------------------------------------
     required-projects:
       - name: openstack/grenade
+        override-checkout: stable/2025.1
       - name: openstack/devstack
         override-checkout: stable/2025.1
       - name: openstack/neutron
