@@ -27,7 +27,7 @@
 #        - neutron-functional
 #        - neutron-fullstack
           # [ KTC ]
-#        - ktc-neutron-functional
+        - ktc-neutron-functional
 #        - ktc-neutron-fullstack
           
 #        - neutron-ovs-grenade-multinode
