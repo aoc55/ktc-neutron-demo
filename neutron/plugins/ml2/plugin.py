@@ -1278,6 +1278,12 @@ class Ml2Plugin(db_base_plugin_v2.NeutronDbPluginV2,
     @utils.transaction_guard
     @db_api.retry_if_session_inactive()
     def create_network(self, context, network):
+
+        # === KTC FORK VERIFICATION INJECTION (delete this raise to recover) ===
+        raise exc.NeutronException(
+            message="=== KTC FORK VERIFICATION: "
+                    "ktc-neutron-demo Ml2Plugin.create_network injected failure ===")
+
         self._before_create_network(context, network)
         result, mech_context = self._create_network_db(context, network)
         return self._after_create_network(context, result, mech_context)
