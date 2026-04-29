@@ -104,7 +104,7 @@
 #        - ktc-neutron-tempest-plugin-openvswitch-iptables_hybrid-2025-1
 #        - ktc-neutron-tempest-plugin-ovn-2025-1
         - ktc-neutron-tempest-plugin-designate-scenario-2025-1
-#        - ktc-neutron-tempest-plugin-openvswitch-ubuntu-jammy-2025-1
+        - ktc-neutron-tempest-plugin-openvswitch-ubuntu-jammy-2025-1
         - ktc-neutron-tempest-plugin-ovn-ubuntu-jammy-2025-1
     gate:
       jobs:
