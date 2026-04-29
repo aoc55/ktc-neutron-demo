@@ -136,6 +136,8 @@
     vars:
       devstack_plugins:
         neutron: https://github.com/aoc55/ktc-neutron-demo.git
+      devstack_localrc:
+        DEVSTACK_PARALLEL: False
 
 - job:
     name: ktc-neutron-tempest-plugin-openvswitch-ubuntu-jammy-2025-1
